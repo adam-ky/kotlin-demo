@@ -1,0 +1,47 @@
+type Query {
+    taskById(id: ID): Task
+    tasks: [Task!]!
+    authors: [Author!]!
+}
+
+type Mutation {
+    addTask(input: CreateTaskInput!): Task!
+    updateTask(id: ID! input: UpdateTaskInput!): Task
+    removeTask(id: ID!): Task
+    addAuthor(input: CreateAuthorInput!): Author!
+    removeAuthor(id: ID!): Author
+}
+
+type Task {
+    id: ID!
+    title: String!
+    description: String!
+    isComplete: Boolean!
+    author: Author
+}
+
+type Author {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String
+}
+
+input CreateTaskInput {
+    title: String!
+    description: String!
+    authorId: ID
+}
+
+input UpdateTaskInput {
+    title: String
+    description: String
+    isComplete: Boolean
+    authorId: ID
+}
+
+input CreateAuthorInput {
+    firstName: String!
+    lastName: String!
+    email: String
+}
